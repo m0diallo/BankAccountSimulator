@@ -5,20 +5,23 @@
 //  Created by Mohammed Diallo on 2023-10-20.
 //
 
-import Foundation
-import SwiftUI
-
 class VirtualBankSystem {
     var accountType = ""
     var isOpened = true
+
+    // Welcome the customer to the virtual bank system.
     func welcomeCustomer() {
         print("Welcome to your virtual bank system.")
     }
+
+    // Guide the customer through the account opening process.
     func onboardCustomerAccountOpening() {
         print("What kind of account would you like to open?")
         print("1. Debit account")
         print("2. Credit account")
     }
+
+    // Create a bank account based on the user's choice.
     func makeAccount(numberPadKey: Int) {
         print("The selected option is \(numberPadKey).")
         switch numberPadKey {
@@ -32,11 +35,9 @@ class VirtualBankSystem {
         }
         print("You have opened a \(accountType) account.")
     }
-    func transferMoney(
-        transferType: String,
-        transferAmount: Int,
-        bankAccount: inout BankAccount
-    ) {
+
+    // Perform money transfer operations (withdraw or deposit) on the bank account.
+    func transferMoney(transferType: String, transferAmount: Int, bankAccount: inout BankAccount) {
         switch transferType {
         case "withdraw":
             if accountType == "credit" {
@@ -54,9 +55,9 @@ class VirtualBankSystem {
             break
         }
     }
-    func checkBalance(
-        bankAccount: BankAccount
-    ) {
+
+    // Check and display the account balance based on the account type.
+    func checkBalance(bankAccount: BankAccount) {
         switch accountType {
         case "credit":
             print(bankAccount.creditBalanceInfo)
@@ -72,19 +73,29 @@ struct BankAccount {
     var debitBalance = 0
     var creditBalance = 0
     let creditLimit = 100
+
+    // Get the debit balance information.
     var debitBalanceInfo: String {
         "Debit balance: $\(debitBalance)"
     }
+
+    // Calculate the available credit.
     var availableCredit: Int {
         creditLimit + creditBalance
     }
+
+    // Get the credit balance information.
     var creditBalanceInfo: String {
         "Available credit: $\(availableCredit)"
     }
+
+    // Perform a deposit into the debit account.
     mutating func debitDeposit(_ amount: Int) {
         debitBalance += amount
         print("Debit deposit: $\(amount). \(debitBalanceInfo)")
     }
+
+    // Perform a withdrawal from the debit account.
     mutating func debitWithdraw(_ amount: Int) {
         if amount > debitBalance {
             print("Insufficient funds to withdraw $\(amount). \(debitBalanceInfo)")
@@ -93,6 +104,8 @@ struct BankAccount {
             print("Debit withdraw: $\(amount). \(debitBalanceInfo)")
         }
     }
+
+    // Perform a deposit into the credit account.
     mutating func creditDeposit(_ amount: Int) {
         creditBalance += amount
         print("Credit deposit: $\(amount). \(creditBalanceInfo)")
@@ -102,6 +115,8 @@ struct BankAccount {
             print("Overpaid credit balance.")
         }
     }
+
+    // Perform a withdrawal from the credit account.
     mutating func creditWithdraw(_ amount: Int) {
         if amount > availableCredit {
             print("Insufficient credit to withdraw $\(amount). \(creditBalanceInfo)")
@@ -137,17 +152,9 @@ repeat {
     case 1:
         virtualBankSystem.checkBalance(bankAccount: bankAccount)
     case 2:
-        virtualBankSystem.transferMoney(
-            transferType: "withdraw",
-            transferAmount: transferAmount,
-            bankAccount: &bankAccount
-        )
+        virtualBankSystem.transferMoney(transferType: "withdraw", transferAmount: transferAmount, bankAccount: &bankAccount)
     case 3:
-        virtualBankSystem.transferMoney(
-            transferType: "deposit",
-            transferAmount: transferAmount,
-            bankAccount: &bankAccount
-        )
+        virtualBankSystem.transferMoney(transferType: "deposit", transferAmount: transferAmount, bankAccount: &bankAccount)
     case 4:
         virtualBankSystem.isOpened = false
         print("The system is closed.")
