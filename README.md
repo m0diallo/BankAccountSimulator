@@ -9,7 +9,6 @@ This project is a hands-on journey into the world of Swift programming where I b
 <h2>Languages and Utilities Used</h2>
 
 - <b>Language: Swift</b> 
-- <b>Development Environment: Xcode</b>
 
 <h2>Environments Used </h2>
 
