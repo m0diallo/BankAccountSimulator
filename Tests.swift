@@ -30,7 +30,7 @@ class VirtualBankSystemTests: XCTestCase {
         virtualBankSystem.transferMoney(transferType: "withdraw", transferAmount: 30, bankAccount: &bankAccount)
         XCTAssertEqual(bankAccount.debitBalance, 20)
 
-        // Test insufficient funds for withdrawal
+        // Testing insufficient funds for withdrawal
         virtualBankSystem.transferMoney(transferType: "withdraw", transferAmount: 25, bankAccount: &bankAccount)
         XCTAssertEqual(bankAccount.debitBalance, 20)  // Should not change
     }
