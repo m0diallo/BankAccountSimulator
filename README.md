@@ -21,8 +21,3 @@ To run this bank account simulator, you can simply execute the provided code. It
 
 ## Usage
 This simulator can serve as a starting point for more complex banking applications or as an educational tool to help users understand basic banking operations. Feel free to expand upon this project to include more features and functionality.
-
-## License
-This project is open-source and available under the MIT License. You are free to use and modify the code as needed.
-
-Enjoy exploring the world of virtual banking with this Swift-based bank account simulator!
